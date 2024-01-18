@@ -7,9 +7,10 @@ class Main
 		
 		int curRun = 0;
 		int curNum = 0;
+		
+		int userInput = 0;
 		while (StdIn.hasNextLine())
-		{
-			int userInput;
+		{	
 			try { userInput = Integer.parseInt(StdIn.readLine()); }
 			catch (Exception e) 
 			{
@@ -17,12 +18,8 @@ class Main
 				continue;
 			}
 
-			if (curRun == 0) 
-			{
-				curRun = 1;
-				curNum = userInput;
-			}
-			else if (userInput == curNum) curRun++;
+			if (curRun == 0) curNum = userInput;
+			if (userInput == curNum) curRun++;
 			else
 			{	
 				if (curRun > recordRun) 

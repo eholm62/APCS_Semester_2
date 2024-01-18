@@ -12,5 +12,6 @@ unalias -a
 # aliases
 alias javac="javac -classpath .:`pwd`/StdLib"
 alias java="java -classpath .:`pwd`/StdLib"
+alias jdb="jdb -sourcepath .:/workspaces/APCS_Semester_2/StdLib -classpath .:/workspaces/APCS_Semester_2/StdLib"
 
 echo success
