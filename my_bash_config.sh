@@ -16,6 +16,5 @@ unalias -a
 alias javac="javac -classpath .:`pwd`/StdLib"
 alias java="java -classpath .:`pwd`/StdLib"
 alias jdb="jdb -sourcepath .:`pwd`/StdLib -classpath .:`pwd`/StdLib"
-alias rumple="cd `pwd`/StdLib"
 
 echo success
