@@ -1,6 +1,6 @@
 { pkgs }: {
   deps = [
-    pkgs.zulu17
+    pkgs.zulu11
     pkgs.vim-full
   ];
 }
