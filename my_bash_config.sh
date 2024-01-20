@@ -61,10 +61,11 @@ unalias -a
 
 if [ "$_already_run" != 1 ]; then 
     export base_dir=`pwd`
-    echo config_bash command and base_dir variable are now defined
+    echo now defined: config_bash, base_dir, my_bash_config
 fi
 export _already_run=1
 alias config_bash=". $base_dir/my_bash_config.sh"
+export my_bash_config="$base_dir/my_bash_config.sh"
 
 
 # aliases
