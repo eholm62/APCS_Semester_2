@@ -1,40 +1,31 @@
 class Main
-{
-	static boolean arrayContains(int[] array, int value)
+{	
+	static int sumtorial(int n)
 	{
-		for (int i = 0; i < array.length; i++)
-			if (array[i] == value) return true;
-		return false;
+		return n * (n + 1) / 2;
 	}
-
 	
 	public static void main(String[] args)
 	{
 		int n = Integer.parseInt(args[0]);
 
-		int[] values = new int[n - 1];
+		int leftover = sumtorial(n);
 		int i = 0;
 		while (i < n - 1)
 		{
 			int userInput = 0;
 			try { userInput = Integer.parseInt(StdIn.readLine()); }
-			catch (Exception e) 
-			{ 
+			catch (Exception e)
+			{
 				StdOut.println("Must input ints");
 				continue;
 			}
 
-			values[i] = userInput;
+			leftover -= userInput;
+
 			i++;
 		}
 
-		for (int j = 1; j <= n; j++)
-		{
-			if (arrayContains(values, j))
-			{
-				StdOut.println(j);
-				return;
-			}
-		}
+		StdOut.printf("Missing value: %d \n", leftover);
 	}
 }

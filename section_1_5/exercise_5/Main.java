@@ -2,10 +2,10 @@ class Main
 {
 	public static void main(String[] args)
 	{
-		int recordRun = 0;
+		int recordLength = 0;
 		int recordNum = 0;
 		
-		int curRun = 0;
+		int curLength = 0;
 		int curNum = 0;
 		
 		int userInput = 0;
@@ -18,20 +18,34 @@ class Main
 				continue;
 			}
 
-			if (curRun == 0) curNum = userInput;
-			if (userInput == curNum) curRun++;
+			if (curLength == 0)
+			{
+				curLength++;
+				curNum = userInput;
+			}
+			else if (userInput == curNum)
+			{
+				curLength++;
+			}
 			else
-			{	
-				if (curRun > recordRun) 
+			{
+				if (curLength > recordLength)
 				{
-					recordRun = curRun;
+					recordLength = curLength;
 					recordNum = curNum;
 				}
-				
-				curRun = 0;
+
+				curLength = 1;
+				curNum = userInput;
 			}
 		}
 
-		StdOut.printf("Longest run: %d consecutive %ds \n", recordRun, recordNum);
+		if (curLength > recordLength)
+		{
+			recordLength = curLength;
+			recordNum = curNum;
+		}
+
+		StdOut.printf("Longest run: %d consecutive %ds \n", recordLength, recordNum);
 	}	
 }

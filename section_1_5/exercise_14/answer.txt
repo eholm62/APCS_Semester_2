@@ -1,0 +1,6 @@
+Print the median of the n numbers.
+Print the percentage of numbers greater than the average.
+Print the n numbers in increasing order.
+Print the n numbers in random order.
+
+all require saving values from StdIn into an array

@@ -19,7 +19,7 @@
 
 # if you "unalias -a" you 
 # will need to run 
-# ". $base_dir/my_bash_config.sh"
+# ". $my_bash_config"
 # in order to get the 
 # "config_bash" alias back
 # along with all other
@@ -69,9 +69,10 @@ export my_bash_config="$base_dir/my_bash_config.sh"
 
 
 # aliases
-alias javac="javac -classpath .:$base_dir/StdLib"
-alias java="java -classpath .:$base_dir/StdLib"
-alias jdb="jdb -sourcepath .:$base_dir/StdLib -classpath .:$base_dir/StdLib"
+alias javac="javac -classpath .:$base_dir/StdLib:$base_dir/MyLibs"
+alias java="java -classpath .:$base_dir/StdLib:$base_dir/MyLibs"
+alias jdb="jdb -sourcepath .:$base_dir/StdLib:$base_dir/MyLibs 
+		-classpath .:$base_dir/StdLib:$base_dir/MyLibs"
 
 
 echo success
