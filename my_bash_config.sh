@@ -73,7 +73,7 @@ export my_bash_config="$base_dir/my_bash_config.sh"
 export CLASSPATH=".:$base_dir/StdLib:$base_dir/MyLibs"
 
 # aliases
-alias jdb="jdb -sourcepath .:$base_dir/StdLib:$base_dir/MyLibs"
+alias jdb="jdb -sourcepath $CLASSPATH"
 
 
 echo success
