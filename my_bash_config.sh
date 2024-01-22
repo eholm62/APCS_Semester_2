@@ -30,7 +30,7 @@
 # to the home directory
 
 # if you accidentally run
-# ". my_bash_config.sh"
+# this program from
 # somewhere other than 
 # the base directory of 
 # your project you can
@@ -44,7 +44,8 @@
 # you may want to ignore 
 # most of this file 
 # and simply adjust then
-# lines beneath # aliases
+# lines beneath the # aliases
+# and # classpath environment var
 # but you also may benefit
 # from adjusting the behavior
 # of this program to your
@@ -68,11 +69,11 @@ alias config_bash=". $base_dir/my_bash_config.sh"
 export my_bash_config="$base_dir/my_bash_config.sh"
 
 
+# classpath environment var
+export CLASSPATH=".:$base_dir/StdLib:$base_dir/MyLibs"
+
 # aliases
-alias javac="javac -classpath .:$base_dir/StdLib:$base_dir/MyLibs"
-alias java="java -classpath .:$base_dir/StdLib:$base_dir/MyLibs"
-alias jdb="jdb -sourcepath .:$base_dir/StdLib:$base_dir/MyLibs 
-		-classpath .:$base_dir/StdLib:$base_dir/MyLibs"
+alias jdb="jdb -sourcepath .:$base_dir/StdLib:$base_dir/MyLibs"
 
 
 echo success
