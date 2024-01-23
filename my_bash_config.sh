@@ -43,7 +43,7 @@
 
 # you may want to ignore 
 # most of this file 
-# and simply adjust then
+# and simply adjust the
 # lines beneath the # aliases
 # and # classpath environment var
 # but you also may benefit

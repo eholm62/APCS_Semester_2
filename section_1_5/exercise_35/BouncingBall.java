@@ -10,7 +10,7 @@ public class BouncingBall
 		double radius = 0.05;
 		while(true)
 		{ // Update ball position and draw it.
-			vy -= 0.0006;
+			vy -= 0.0003;
 			if (Math.abs(rx + vx) + radius > 1.0) vx = -vx;
 			if (ry + vy + radius > 1.0) vy = -0.023;
 			if (ry + vy - radius < -1.0) vy = 0.023;
