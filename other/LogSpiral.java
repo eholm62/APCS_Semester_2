@@ -6,13 +6,13 @@ class LogSpiral
 		double y = point1[1] + (point2[1] - point1[1]) / n;
 		return new double[] { x, y };
 	}
-	
+
 	public static void main(String[] args)
 	{
 		StdDraw.setXscale(-1.0, 1.0);
 		StdDraw.setYscale(-1.0, 1.0);
 		StdDraw.setPenRadius(0.0025);
-		
+
 		final int unit = 9;
 		final double radius = 0.75;
 		final int n = Integer.parseInt(args[0]);
@@ -27,7 +27,7 @@ class LogSpiral
 			prevPoint = point;
 		}
 
-		
+
 		while (true)
 		{
 			double[] prevMouse = mice[0];
