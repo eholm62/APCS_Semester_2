@@ -14,8 +14,7 @@ class BouncingBall
 		final int fpsTarget = 40;
 
 		final double radius = 0.1;
-		final double gravity = 0.0004;
-		final double bounceEnergyLoss = 0.04;
+		final double bounceEnergyLoss = 0.1;
 		final double airResistanceEnergyLoss = 0.003;
 
 		StdAudio.save("octave.wav", MyAudio.sineWave(440, 0.2));
@@ -24,15 +23,16 @@ class BouncingBall
 		StdAudio.save("third.wav", MyAudio.sineWave(277.183, 0.2));
 
 		double maxXvelocity = 0.032;
-		double maxYvelocity = 0.06;
+		double maxYvelocity = 0.05;
+		double gravity = 0.0004;
 
 		double x = 0.5;
 		double y = -0.5;
 		
 		double xVelocity = 0.032;
-		double yVelocity = -0.06;
+		double yVelocity = -0.05;
 
-		while ()
+		while (true)
 		{	
 			long startTime = System.currentTimeMillis();
 
@@ -73,6 +73,8 @@ class BouncingBall
 			{
 				maxYvelocity *= 1.0 - bounceEnergyLoss;
 				yVelocity = maxYvelocity;
+				gravity += 0.0002;
+				maxXvelocity *= 1.0 - bounceEnergyLoss / 4;
 				new Thread(() -> StdAudio.play("root.wav")).start();
 			}
 
@@ -83,7 +85,7 @@ class BouncingBall
 			x += xVelocity;
 			y += yVelocity;
 
-			int wait = 1000 / 50 - (int)(System.currentTimeMillis() - startTime);
+			int wait = 1000 / fpsTarget - (int)(System.currentTimeMillis() - startTime);
 			StdDraw.pause(wait >= 0 ? wait : 0);
 		}
 	}
