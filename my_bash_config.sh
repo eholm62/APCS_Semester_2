@@ -60,6 +60,9 @@
 
 unalias -a
 
+# any code you only wish to execute
+# the first time should be placed
+# within this if statement
 if [ "$_already_run" != 1 ]; then 
     export base_dir=`pwd`
     echo now defined: config_bash, base_dir, my_bash_config
