@@ -16,6 +16,7 @@ class LogSpiral
 		final int unit = 9;
 		final double radius = 0.75;
 		final int n = Integer.parseInt(args[0]);
+		final int iterations = Integer.parseInt(args[1]);
 
 		double[][] mice = new double[n][];
 		double[] prevPoint = new double[] { radius, 0.0 };
@@ -27,8 +28,7 @@ class LogSpiral
 			prevPoint = point;
 		}
 
-
-		while (true)
+		for (int j = 0; j < iterations; j++)
 		{
 			double[] prevMouse = mice[0];
 			for (int i = n - 1; i >= 0; i--)
@@ -39,6 +39,11 @@ class LogSpiral
 				prevMouse = mice[i];
 				mice[i] = point;
 			}
-		}	
+		}
+		
+		if (args.length > 2) 
+			StdDraw.save(args[2]);
+
+		StdOut.println("Done");
 	}
 }
