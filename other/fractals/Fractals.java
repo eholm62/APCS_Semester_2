@@ -71,7 +71,23 @@ class Fractals
 
 	public static double[][] invisRegPoly(int n, double[] center, double radius)
 	{
-		return null;
+		double oneAngle = TAU / n;
+		double angle = 0.0;
+
+		double[][] verticies = new double[n][];
+		double startX = center[0] + radius * Math.cos(angle);
+		double startY = center[1] + radius * Math.sin(angle);
+		verticies[0] = new double[] { startX, startY };
+
+		for (int i = 1; i < n; i++)
+		{
+			angle += oneAngle;
+			double x = center[0] + radius * Math.cos(angle);
+			double y = center[1] + radius * Math.cos(angle);
+			verticies[i] = new double[] { x, y }; 
+		}
+
+		return verticies;
 	}
 
 
@@ -133,5 +149,8 @@ class Fractals
 
 		regPoly(oogway, 6, new double[] { 0.0, 0.0 }, 0.5);
 		oogway.pause(1);
+		canvas.clear();
+
+		nFlake(oogway, 6, new double[] { 0.0, 0.0 }, 0.5, 4);
 	}
 }
