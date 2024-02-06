@@ -13,7 +13,7 @@ class Main
 		return true;
 	}
 
-	static boolean isWhiteColumn(Picture picture, int column)
+	static boolean isWhiteCol(Picture picture, int column)
 	{
 		for (int i = 0; i < picture.height(); i++)
 		{
@@ -26,62 +26,64 @@ class Main
 	
 	public static void main(String[] args)
 	{
-		String fileName = args[0];
-		Picture picture = new Picture(fileName);
-
+		final String fileName = args[0];
+		Picture inputImage = new Picture(fileName);
+		
 		int firstNonWhiteRow = 0;
-		for (int i = 0; i < picture.height(); i++)
+		for (int row = 0; row < inputImage.height(); row++)
 		{
-			if (!isWhiteRow(picture, i)) 
+			if (!isWhiteRow(inputImage, row))
 			{
-				firstNonWhiteRow = i;
+				firstNonWhiteRow = row;
 				break;
 			}
 		}
 
-		int lastNonWhiteRow = picture.height() - 1;
-		for (int i = picture.height() - 1; i >= 0; i--)
+		int lastNonWhiteRow = inputImage.height() - 1;
+		for (int row = inputImage.height() - 1; row >= firstNonWhiteRow; row--)
 		{
-			if (!isWhiteRow(picture, i))
+			if (!isWhiteRow(inputImage, row))
 			{
-				lastNonWhiteRow = i;
+				lastNonWhiteRow = row;
 				break;
 			}
 		}
 
 		int firstNonWhiteCol = 0;
-		for (int i = 0; i < picture.width(); i++)
+		for (int col = 0; col < inputImage.width(); col++)
 		{
-			if (!isWhiteColumn(picture, i)) 
+			if (!isWhiteCol(inputImage, col))
 			{
-				firstNonWhiteCol = i;
+				firstNonWhiteCol = col;
 				break;
 			}
 		}
 
-		int lastNonWhiteCol = picture.width() - 1;
-		for (int i = picture.width() - 1; i >= 0; i--)
+		int lastNonWhiteCol = inputImage.width() - 1;
+		for (int col = inputImage.width() - 1; col >= firstNonWhiteCol; col--)
 		{
-			if (!isWhiteColumn(picture, i))
+			if (!isWhiteCol(inputImage, col))
 			{
-				lastNonWhiteCol = i;
+				lastNonWhiteCol = col;
 				break;
 			}
 		}
 
-		StdOut.printf("Bottom Left: (%d, %d) \n", firstNonWhiteCol, lastNonWhiteRow);
-		StdOut.printf("Top Right: (%d, %d) \n", lastNonWhiteCol, firstNonWhiteRow);
-
-		Picture newPicture = new Picture(lastNonWhiteCol + 1 - firstNonWhiteCol, lastNonWhiteRow - firstNonWhiteRow);
-		for (int row = firstNonWhiteRow; row <= lastNonWhiteRow; row++)
+		int newWidth = lastNonWhiteCol + 1 - firstNonWhiteCol;
+		int newHeight = lastNonWhiteRow + 1 - firstNonWhiteRow;
+		Picture outputImage = new Picture(newWidth, newHeight);
+		for (int col = firstNonWhiteCol; col <= lastNonWhiteCol; col++)
 		{
-			for (int col = firstNonWhiteCol; col < lastNonWhiteCol; col++)
+			for (int row = firstNonWhiteRow; row <= lastNonWhiteRow; row++)
 			{
-				Color pixel = picture.get(col, row);
-				newPicture.set(col - firstNonWhiteCol, row - firstNonWhiteRow, pixel);
+				Color color = inputImage.get(col, row);
+				outputImage.set(col - firstNonWhiteCol, row - firstNonWhiteRow, color);
 			}
 		}
 
-		newPicture.show();
+		outputImage.show();
+
+		StdOut.printf("Lower Left Corner: (%d, %d) \n", firstNonWhiteCol, lastNonWhiteRow);
+		StdOut.printf("Top Right Corner: (%d, %d) \n", lastNonWhiteCol, firstNonWhiteRow);
 	}
 }
