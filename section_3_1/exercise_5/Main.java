@@ -14,7 +14,7 @@ class Main
 		{
 			for (int j = 0; j < picture.height(); j++)
 			{
-				Color color = picture.get(i, picture.height() -1 - j);
+				Color color = picture.get(picture.width() - 1 - i, j);
 				newPicture.set(i, j, color);
 			}
 		}

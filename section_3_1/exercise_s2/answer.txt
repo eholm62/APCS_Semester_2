@@ -1,0 +1,13 @@
+A horizontal flip followed by a diagonal flip results in a 90 degree
+rotation of the original image. So a sequence of the following flips:
+
+Horizontal
+Diagonal
+Horizontal 
+Diagonal
+Horizontal
+Diagonal
+Horizontal
+Diagonal
+
+would result in the original image.
