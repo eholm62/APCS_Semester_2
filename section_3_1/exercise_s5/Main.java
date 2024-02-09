@@ -2,19 +2,22 @@ class Main
 {
 	public static void main(String[] args)
 	{
-		final String userInput = args[0];
-
-		ArrayList<char[]> singleChars = new ArrayList<char[]>();
+		final String userInput;
+		if (args.length > 0) userInput = args[0];
+		else userInput = StdIn.readLine();
+		
+		int[] charCounts = new int[65536];
 		for (int i = 0; i < userInput.length(); i++)
 		{
-			int location = singleChars.indexOf(new char[] {userInput.get(i)});
-			if (location == -1)
+			charCounts[userInput.charAt(i)] += 1;
+		}
+
+		for (int i = 0; i < userInput.length(); i++)
+		{
+			if (charCounts[userInput.charAt(i)] == 1)
 			{
-				ArrayList.add(new char[] {userInput.get(i)});
-			}
-			else
-			{
-				ArrayList.remove(location);
+				StdOut.println(userInput.charAt(i));
+				return;
 			}
 		}
 	}
