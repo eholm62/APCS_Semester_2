@@ -1,6 +1,5 @@
 class ScytaleEncoder
 {
-	// hyphens are important for decoding they must be here, this code doesn't work because it doesn't insert dashes
 	public static void main(String[] args)
 	{
 		final int numFaces = Integer.parseInt(args[0]);
@@ -8,15 +7,21 @@ class ScytaleEncoder
 
 		final String userInput = StdIn.readLine();
 
-		char[] encoded = new char[userInput.length()];
-		for (int i = 0; i < userInput.length(); i += lineLength)
+		String encoded = "";
+		for (int i = 0; i < lineLength; i++)
 		{
-			for (int j = i; j < i + lineLength; j++)
+			int count = 0;
+			for (int j = i; j < userInput.length(); j += lineLength)
 			{
-				encoded[(j - i) * numFaces + i / lineLength] = userInput.charAt(j);
+				encoded += userInput.charAt(j);
+				count++;
+			}
+
+			for (int j = 0; j < numFaces - count; j++)
+			{
+				encoded += '-';
 			}
 		}
-
-		StdOut.println(new String(encoded));
+		StdOut.println(encoded);
 	}
 }

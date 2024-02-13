@@ -4,55 +4,52 @@ class Main
 {
 	public static void main(String[] args)
 	{
-		final String location = args[0];
-		final String digits = args[1];
-		
-		long length = (new File(location)).length();
-		In reader = new In(location);
+		final String digits = args[0];
+		In reader = new In("https://oeis.org/A002205/b002205.txt");
 
-		int record = -1;
 		int recordI = -1;
-		int curStartI = -1;
-		int digitsI = 0;
-		for (int j = 0; j < length; j++)
-		{
-			int i;
-			int dig;
+		int recordLength = 0;
+		int curI = -1;
+		int curLength = 0;
+		int location = 0;
+		int i = 0;
+		while (true)
+		{ i++;
+			int digit;
 			
-			try 
+			try
 			{
-				i = reader.readInt();
-				dig = reader.readInt();
+				reader.readInt();
+				digit = reader.readInt();
 			}
-			catch (Exception e)
+			catch (Exception e) 
 			{
-				continue;
+				break;
 			}
 
-			if (Character.getNumericValue(digits.charAt(digitsI)) == dig)
+			if (curI == -1)
 			{
-				if (curStartI == -1)
+				curI = i;
+			}
+		        if (Character.getNumericValue(digits.charAt(location)) == digit)
+			{
+				location++;
+				curLength++;
+			}
+			else 
+			{
+				if (curLength > recordLength)
 				{
-					curStartI = i;
+					recordLength = curLength;
+					recordI = curI;
 				}
-				digitsI++;
+				
+				curI = -1;
+				curLength = 0;
+				location = 0;
 			}
-			else if (digitsI > record)
-			{
-				record = digitsI;
-				recordI = curStartI;
-				curStartI = -1;
-				digitsI = 0;
-			}
-			else
-			{
-				curStartI = -1;
-				digitsI = 0;
-			}
-
-			reader.readLine();
 		}
 
-		StdOut.println(recordI);
+		StdOut.printf("Record Length: %d \nAt: %d \n", recordLength, recordI);
 	}
 }
