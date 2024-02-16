@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-class ColorStudy
+class Other
 {
 	public static void main(String[] args)
 	{
@@ -11,8 +11,8 @@ class ColorStudy
 			for (int row = 0; row < 256; row++)
 			{
 				int r = col;
-				int g = 81 + row * (255 - 81) / 256;
-				int b = 255;
+				int g = 81 + col * (255 - 81) / 256;
+				int b = 157 + col * (255 - 157) / 256;
 
 				image.set(col, row, new Color(r, g, b));
 			}
