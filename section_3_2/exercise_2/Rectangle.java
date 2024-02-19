@@ -54,22 +54,42 @@ class Rectangle
 		StdDraw.rectangle(this.x, this.y, this.width / 2.0, this.height / 2.0);
 	}
 
+	static int i;
+
 	public static void main(String[] args)
 	{
-		Rectangle a = new Rectangle(0.5, 0.5, 0.5, 0.5);
-		Rectangle b = new Rectangle(0.5, 0.5, 0.25, 0.35);
-		Rectangle c = new Rectangle(0.5, 0.5, 0.75, 0.85);
+		int n = Integer.parseInt(args[0]);
+		double min = Double.parseDouble(args[1]);
+		double max = Double.parseDouble(args[2]);
 
-		StdOut.println(a);
-		StdOut.println(b);
-		StdOut.println(c);
+		StdDraw.setXscale(-1.0, 1.0);
+		StdDraw.setYscale(-1.0, 1.0);
 
-		a.draw();
-		b.draw();
-		c.draw();
+		double sumAreas = 0.0;
+		double sumPerimeters = 0.0;
+		Rectangle[] rectangles = new Rectangle[n];
+		i = 0;
+		
+		new Thread(() -> {
+			while (i < n)
+			{
+				StdOut.println(i);
+			}
+		}).start();
+
+		while (i < n)
+		{
+			double width = min + Math.random() * (max - min);
+			double height = min + Math.random() * (max - min);
+			Rectangle rectangle = new Rectangle(0.0, 0.0, width, height);
+			rectangles[i] = rectangle;
+			sumAreas += rectangle.area();
+			sumPerimeters += rectangle.perimeter();
+			rectangle.draw();
+			i++;
+		}
 	
-		StdOut.println(a.contains(b));	// true
-		StdOut.println(a.contains(c));	// false
-		StdOut.println(c.contains(b));	// true
+		StdOut.printf("Average area: %f \n", sumAreas / n);
+		StdOut.printf("Average perimeter: %f \n", sumPerimeters / n);
 	}
 }
