@@ -7,9 +7,9 @@ class Turtle
 	double angle;
 	boolean isUp;
 
-	Draw canvas;
+	Canvas canvas;
 
-	public Turtle(Draw canvas)
+	public Turtle(Canvas canvas)
 	{
 		this.x = 0.0;
 		this.y = 0.0;
@@ -18,70 +18,6 @@ class Turtle
 		canvas.setPenColor(Color.BLACK);
 		canvas.setPenRadius(0.0025);
 		
-		this.canvas = canvas;
-	}
-
-	public Turtle(Draw canvas, double x, double y)
-	{
-		this.x = x;
-		this.y = y;
-		
-		this.angle = 0.0;
-		this.isUp = false;
-		canvas.setPenColor(Color.BLACK);
-		canvas.setPenRadius(0.0025);
-
-		this.canvas = canvas;
-	}
-
-	public Turtle(Draw canvas, double x, double y, double angle)
-	{
-		this.x = x;
-		this.y = y;
-		this.angle = angle;
-
-		this.isUp = false;
-		canvas.setPenColor(Color.BLACK);
-		canvas.setPenRadius(0.0025);
-
-		this.canvas = canvas;
-	}
-
-	public Turtle(Draw canvas, double x, double y, double anglee, Color color)
-	{
-		this.x = x;
-		this.y = y;
-		this.angle = angle;
-		canvas.setPenColor(color);
-
-		this.isUp = isUp;
-		canvas.setPenRadius(0.0025);
-
-		this.canvas = canvas;
-	}
-
-	public Turtle(double x, double y, double angle, Color color, boolean isUp)
-	{
-		this.x = x;
-		this.y = y;
-		this.angle = angle;
-		canvas.setPenColor(color);
-		this.isUp = isUp;
-
-		canvas.setPenRadius(0.0025);
-
-		this.canvas = canvas;
-	}
-
-	public Turtle(double x, double y, double angle, Color color, boolean isUp, double penRadius)
-	{
-		this.x = x;
-		this.y = y;
-		this.angle = angle;
-		canvas.setPenColor(color);
-		this.isUp = isUp;
-		canvas.setPenRadius(penRadius);
-
 		this.canvas = canvas;
 	}
 
@@ -134,24 +70,5 @@ class Turtle
 	public void pause(double seconds)
 	{
 		canvas.pause((int)(seconds * 1000));
-	}
-
-	public static void main(String[] args)
-	{
-		Draw canvas = new Draw();
-		canvas.setXscale(-1.0, 1.0);
-		canvas.setYscale(-1.0, 1.0);
-		canvas.clear(Color.BLACK);
-		
-		Turtle turtle = new Turtle(canvas);
-		turtle.setPenColor(Color.WHITE);
-
-		final int n = Integer.parseInt(args[0]);
-
-		for (int i = 1; i <= n; i++)
-		{
-			turtle.forward(0.25);
-			turtle.counterclockwise(360.0 / n);
-		}
 	}
 }

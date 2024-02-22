@@ -5,7 +5,6 @@ class Fractals
 	static final double TAU = 6.283185;
 	static final double PHI = 1.618033;
 
-
 	public static void triangle(Turtle turtle, double[] leftVertex, double sideLength)
 	{
 		turtle.penUp();
@@ -23,7 +22,7 @@ class Fractals
 	{
 		if (depth == 0) 
 		{ // base case
-			triangle(turtle, leftCorner, sideLength); 
+			triangle(turtle, leftCorner, sideLength);
 			return;
 		}
 
@@ -127,11 +126,10 @@ class Fractals
 		double scaleFactor = 1.0 / (2.0 * sum);
 		nFlakeRecurs(turtle, n, center, radius, scaleFactor, depth);	
 	}
-
-
+	
 	public static void main(String[] args)
 	{
-		Draw canvas = new Draw();
+		Canvas canvas = new Canvas(10000000);
 		canvas.setXscale(-1.0, 1.0);
 		canvas.setYscale(-1.0, 1.0);
 		canvas.clear();
@@ -139,18 +137,18 @@ class Fractals
 		Turtle oogway = new Turtle(canvas);
 		oogway.setPenRadius(0.002);
 		
-		triangle(oogway, new double[] { 0.0, 0.0 }, 0.25);
+		// triangle(oogway, new double[] { 0.0, 0.0 }, 0.25);
+		// oogway.pause(1);
+		// canvas.clear();
+
+		sierpinskiTri(oogway, new double[] { -0.87, -0.75 }, 1.75, 11);
 		oogway.pause(1);
 		canvas.clear();
 
-		sierpinskiTri(oogway, new double[] { -0.87, -0.75 }, 1.75, 5);
-		oogway.pause(1);
-		canvas.clear();
+		// regPoly(oogway, 6, new double[] { 0.0, 0.0 }, 0.5);
+		// oogway.pause(1);
+		// canvas.clear();
 
-		regPoly(oogway, 6, new double[] { 0.0, 0.0 }, 0.5);
-		oogway.pause(1);
-		canvas.clear();
-
-		nFlake(oogway, 6, new double[] { 0.0, 0.0 }, 0.5, 4);
+		nFlake(oogway, 3, new double[] { 0.0, 0.0 }, 0.5, 4);
 	}
 }
