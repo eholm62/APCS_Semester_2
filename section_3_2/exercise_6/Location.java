@@ -11,9 +11,9 @@ class Location
 
 	public double distanceTo(Location other)
 	{
-		double a = Math.sin(this.longitude) * Math.sin(other.longitude * other.longitude);
-		double b = Math.cos(this.longitude) * Math.cos(other.longitude) * Math.cos(this.lattitude - other.lattitude);
-		return 1.82 * 60 * Math.acos(a + b);
+		double a = Math.sin(Math.toRadians(this.lattitude)) * Math.sin(Math.toRadians(other.lattitude));
+		double b = Math.cos(Math.toRadians(this.lattitude)) * Math.cos(Math.toRadians(other.lattitude)) * Math.cos(Math.toRadians(this.longitude - other.longitude));
+		return 6371 * Math.acos(a + b);
 	}
 
 	public static void main(String[] args)
