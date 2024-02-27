@@ -33,33 +33,30 @@ class Complex
 		return new Complex(real, imag);
 	}
 
-	public Complex sqrt(double x)
+	public static Complex sqrt(double x)
 	{
-		if (x < 0) return new Complex(0, Math.sqrt(x));
+		if (x < 0) return new Complex(0, Math.sqrt(-x));
 		return new Complex(Math.sqrt(x), 0);	
 	}
 
 	public String toString()
 	{
+		if (this.imag < 0)
+			return String.format("(%f - %fi)", real, -imag);
 		return String.format("(%f + %fi)", real, imag);
 	}
 
 	public static void main(String[] args)
 	{
-		Complex a = new Complex(1, 0);
-		Complex b = new Complex(0, 1);
-		Complex c = new Complex(1, 1);
-		Complex d = new Complex(2, 3);
-		Complex e = new Complex(7, 4);
+		final double a = Double.parseDouble(args[0]);
+		final double b = Double.parseDouble(args[1]);
+		final double c = Double.parseDouble(args[2]);
 
-		StdOut.printf("(1 + 0i): %s \n", a);
-		StdOut.printf("(0 + 1i): %s \n", b);
-		StdOut.printf("(1 + 1i): %s \n", c);
-		StdOut.printf("(2 + 3i): %s \n", d);
-		StdOut.printf("(7 + 4i): %s \n", e);
-		StdOut.println("(1 + 1i): " + a.add(b));
-		StdOut.println("(9 + 7i): " + d.add(e));
-		StdOut.println("(2 + 29i): " + d.multiply(e));
-		StdOut.println("(2 - 1i): " + e.divide(d));
+		double discriminant = b * b - 4 * a * c;
+		Complex solution1 = ((new Complex(-b, 0)).add(sqrt(discriminant))).divide(new Complex(2 * a, 0));
+		Complex solution2 = ((new Complex(-b, 0)).subtract(sqrt(discriminant))).divide(new Complex(2 * a, 0));
+
+		StdOut.println(solution1 + " " + solution2);
+		
 	}
 }
